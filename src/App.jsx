@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 
-const STORAGE_KEY = "nr-responses-v1";
+const SUPABASE_URL = "https://idqmsztjzoxezreeccpg.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlkcW1zenRqem94ZXpyZWVjY3BnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcwMDUwMTIsImV4cCI6MjA5MjU4MTAxMn0.PzTqqSkHmHN0KIcITe1VBjD2u2CrTNpslU_733g1fMg";
 const ADMIN_PASSWORD = "NR2026";
 
 const QUESTIONS = [
@@ -189,33 +190,55 @@ export default function App() {
 
   const loadData = async () => {
     try {
-      const r = await window.storage.get(STORAGE_KEY, true);
-      if (r?.value) {
-        const data = JSON.parse(r.value);
-        setResponses(Array.isArray(data) ? data : []);
-        setCount(Array.isArray(data) ? data.length : 0);
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/responses?select=*&order=created_at.desc`, {
+        headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+      });
+      const data = await res.json();
+      if (Array.isArray(data)) {
+        setResponses(data);
+        setCount(data.length);
       }
     } catch {}
   };
 
   const saveResponse = async (finalAnswers) => {
     try {
-      let existing = [];
-      try {
-        const r = await window.storage.get(STORAGE_KEY, true);
-        if (r?.value) existing = JSON.parse(r.value);
-      } catch {}
-      const updated = [...existing, { ...finalAnswers, ts: new Date().toISOString() }];
-      await window.storage.set(STORAGE_KEY, JSON.stringify(updated), true);
-      setResponses(updated);
-      setCount(updated.length);
+      const row = {
+        name: finalAnswers.name || null,
+        email: finalAnswers.email || null,
+        city: finalAnswers.city || null,
+        origin: finalAnswers.origin || null,
+        q1: finalAnswers.q1 || null,
+        q2: finalAnswers.q2 || null,
+        q3: finalAnswers.q3 || null,
+        q4: finalAnswers.q4 || null,
+        q5: finalAnswers.q5 || null,
+        q6: finalAnswers.q6 || null,
+        q7: finalAnswers.q7 || null,
+      };
+      await fetch(`${SUPABASE_URL}/rest/v1/responses`, {
+        method: "POST",
+        headers: {
+          apikey: SUPABASE_KEY,
+          Authorization: `Bearer ${SUPABASE_KEY}`,
+          "Content-Type": "application/json",
+          Prefer: "return=minimal"
+        },
+        body: JSON.stringify(row)
+      });
+      await loadData();
     } catch {}
   };
 
-  const deleteResponse = async (ts) => {
-    const updated = responses.filter(r => r.ts !== ts);
-    await window.storage.set(STORAGE_KEY, JSON.stringify(updated), true);
-    setResponses(updated); setCount(updated.length); setSelectedRow(null);
+  const deleteResponse = async (id) => {
+    try {
+      await fetch(`${SUPABASE_URL}/rest/v1/responses?id=eq.${id}`, {
+        method: "DELETE",
+        headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+      });
+      await loadData();
+      setSelectedRow(null);
+    } catch {}
   };
 
   const next = async (val) => {
@@ -331,7 +354,7 @@ export default function App() {
                       : responses.filter(r => r.q7).map((r, i) => (
                         <div key={i} style={{ borderLeft:"2px solid #e8c0bc", paddingLeft:14, marginBottom:16 }}>
                           <p style={{ fontSize:14, color:"#2a1f10", lineHeight:1.7, marginBottom:4 }}>"{r.q7}"</p>
-                          <span style={{ fontSize:12, color:"#8a7050" }}>{r.name||"Anónimo"} · {r.city||"—"} · {r.ts?.split("T")[0]||"—"}</span>
+                          <span style={{ fontSize:12, color:"#8a7050" }}>{r.name||"Anónimo"} · {r.city||"—"} · {(r.created_at||r.ts||'—').split('T')[0]}</span>
                         </div>
                       ))
                     }
@@ -374,7 +397,7 @@ export default function App() {
                               <td style={{ padding:"11px 12px", color:"#5a4a30" }}>{r.origin||"—"}</td>
                               <td style={{ padding:"11px 12px" }}>{r.q3 ? <span className="tag">{r.q3.substring(0,26)}{r.q3.length>26?"…":""}</span> : "—"}</td>
                               <td style={{ padding:"11px 12px" }}>{r.q6 ? <span className="tag">{r.q6}</span> : "—"}</td>
-                              <td style={{ padding:"11px 12px", color:"#8a7050", whiteSpace:"nowrap" }}>{r.ts?.split("T")[0]||"—"}</td>
+                              <td style={{ padding:"11px 12px", color:"#8a7050", whiteSpace:"nowrap" }}>{(r.created_at||r.ts||'—').split('T')[0]}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -413,7 +436,7 @@ export default function App() {
                         <h3 style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:22, color:"#1a0f05", marginBottom:4 }}>{selectedRow.name||"Anónimo"}</h3>
                         <p style={{ fontSize:13, color:"#8a7050" }}>{selectedRow.city} · {selectedRow.origin} · {selectedRow.ts?.split("T")[0]}</p>
                       </div>
-                      <button onClick={() => deleteResponse(selectedRow.ts)} style={{ background:"transparent", color:"#c05050", border:"1px solid #e0c0c0", borderRadius:8, padding:"6px 14px", fontSize:12, cursor:"pointer", fontFamily:"'DM Sans',sans-serif" }}>
+                      <button onClick={() => deleteResponse(selectedRow.id)} style={{ background:"transparent", color:"#c05050", border:"1px solid #e0c0c0", borderRadius:8, padding:"6px 14px", fontSize:12, cursor:"pointer", fontFamily:"'DM Sans',sans-serif" }}>
                         Eliminar
                       </button>
                     </div>
@@ -442,7 +465,7 @@ export default function App() {
                       style={{ background:"white", borderRadius:12, padding:"18px 20px", marginBottom:10, cursor:"pointer", boxShadow:"0 1px 8px #2a1f1006", display:"flex", justifyContent:"space-between", alignItems:"center", transition:".15s" }}>
                       <div>
                         <div style={{ fontSize:15, color:"#1a0f05", fontWeight:500, marginBottom:4 }}>{r.name||"Anónimo"}</div>
-                        <div style={{ fontSize:12, color:"#8a7050" }}>{r.city||"—"} · {r.origin||"—"} · {r.ts?.split("T")[0]||"—"}</div>
+                        <div style={{ fontSize:12, color:"#8a7050" }}>{r.city||"—"} · {r.origin||"—"} · {(r.created_at||r.ts||'—').split('T')[0]}</div>
                         <div style={{ marginTop:6 }}>
                           {r.q3 && <span className="tag">{r.q3.substring(0,28)}{r.q3.length>28?"…":""}</span>}
                           {r.q6 && <span className="tag">{r.q6}</span>}
