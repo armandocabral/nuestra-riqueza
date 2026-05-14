@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Armando Cabral — Wealth Management Business Plan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C97A;
+    --gold-dim: rgba(201,168,76,0.15);
+    --dark: #0A0A0F;
+    --dark2: #111118;
+    --dark3: #1A1A24;
+    --dark4: #222230;
+    --text: #E8E4DC;
+    --text-dim: #9A9485;
+    --accent: #4C7FC9;
+    --accent2: #C94C6E;
+    --green: #4CC99A;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,15,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+    padding: 0 2rem;
+    display: flex; align-items: center; gap: 0;
+    height: 52px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.95rem;
+    color: var(--gold);
+    margin-right: auto;
+    letter-spacing: 0.05em;
+  }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0 1rem;
+    height: 52px;
+    display: flex; align-items: center;
+    border-left: 1px solid rgba(255,255,255,0.05);
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 6rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -50%; right: -20%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    max-width: 800px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-sub {
+    color: var(--text-dim);
+    font-size: 1rem;
+    max-width: 520px;
+    line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+  .hero-metrics {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+  }
+  .metric {
+    display: flex; flex-direction: column; gap: 0.3rem;
+  }
+  .metric-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--gold);
+  }
+  .metric-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* SECTIONS */
+  section {
+    padding: 5rem 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    position: relative;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-label::before {
+    content: '';
+    width: 30px; height: 1px;
+    background: var(--gold);
+  }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    margin-bottom: 2.5rem;
+    line-height: 1.2;
+  }
+
+  /* PHASES */
+  .phases { display: flex; flex-direction: column; gap: 1px; }
+  .phase {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .phase:hover { border-color: rgba(201,168,76,0.3); }
+  .phase-header {
+    padding: 1.5rem 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    cursor: pointer;
+    user-select: none;
+  }
+  .phase-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--gold-dim);
+    line-height: 1;
+    min-width: 50px;
+    transition: color 0.3s;
+  }
+  .phase:hover .phase-num { color: var(--gold); }
+  .phase-info { flex: 1; }
+  .phase-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .phase-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+  .phase-toggle {
+    color: var(--text-dim);
+    font-size: 1.2rem;
+    transition: transform 0.3s;
+  }
+  .phase.open .phase-toggle { transform: rotate(45deg); color: var(--gold); }
+  .phase-body {
+    display: none;
+    padding: 0 2rem 2rem 5rem;
+  }
+  .phase.open .phase-body { display: block; }
+  .phase-items { display: flex; flex-direction: column; gap: 0.6rem; }
+  .phase-item {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .phase-item::before {
+    content: '→';
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  /* FUNNEL */
+  .funnel { display: flex; flex-direction: column; gap: 0; }
+  .funnel-step {
+    position: relative;
+    padding: 1.5rem 2rem;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 1px;
+    display: grid;
+    grid-template-columns: 120px 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    transition: background 0.2s;
+  }
+  .funnel-step:hover { background: var(--dark3); }
+  .funnel-stage {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.35rem 0.75rem;
+    border-radius: 2px;
+    text-align: center;
+  }
+  .stage-attract { background: rgba(76,127,201,0.15); color: var(--accent); border: 1px solid rgba(76,127,201,0.3); }
+  .stage-convert { background: rgba(201,168,76,0.15); color: var(--gold); border: 1px solid rgba(201,168,76,0.3); }
+  .stage-onboard { background: rgba(76,201,154,0.15); color: var(--green); border: 1px solid rgba(76,201,154,0.3); }
+  .stage-retain { background: rgba(201,76,110,0.15); color: var(--accent2); border: 1px solid rgba(201,76,110,0.3); }
+  .stage-scale { background: rgba(201,168,76,0.2); color: var(--gold-light); border: 1px solid rgba(201,168,76,0.5); }
+  .funnel-title { font-size: 0.95rem; font-weight: 500; }
+  .funnel-tactics { font-size: 0.82rem; color: var(--text-dim); line-height: 1.6; }
+
+  /* CONTENT PLAN */
+  .content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1px;
+  }
+  .content-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1.75rem;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .content-card:hover {
+    border-color: rgba(201,168,76,0.3);
+    background: var(--dark3);
+  }
+  .content-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .content-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .content-desc {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .content-freq {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    padding: 0.3rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.1);
+    display: inline-block;
+  }
+
+  /* FINANCIAL MODEL */
+  .fin-model { overflow-x: auto; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+  }
+  thead tr {
+    border-bottom: 1px solid var(--gold);
+  }
+  th {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 400;
+  }
+  td {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    color: var(--text-dim);
+  }
+  td:first-child { color: var(--text); font-weight: 500; }
+  td.highlight { color: var(--gold); font-family: 'DM Mono', monospace; }
+  td.green { color: var(--green); font-family: 'DM Mono', monospace; }
+  tr:hover td { background: var(--dark3); }
+  tr.separator td { border-top: 1px solid rgba(201,168,76,0.2); }
+
+  /* CHART */
+  .chart-wrap {
+    margin-top: 2rem;
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+  }
+  .chart-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .bar-chart { display: flex; align-items: flex-end; gap: 8px; height: 180px; }
+  .bar-group { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; flex: 1; }
+  .bar {
+    width: 100%;
+    background: linear-gradient(180deg, var(--gold) 0%, rgba(201,168,76,0.3) 100%);
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    transition: opacity 0.2s;
+    min-height: 4px;
+  }
+  .bar:hover { opacity: 0.8; }
+  .bar-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    text-align: center;
+  }
+  .bar-value {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--gold);
+    position: absolute;
+    top: -1.2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+  }
+
+  /* TECH STACK */
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+  }
+  .tech-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 1.75rem;
+  }
+  .tech-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .tech-name {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  .tech-desc {
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .tech-tools {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+    margin-top: 1rem;
+  }
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(76,127,201,0.3);
+    color: var(--accent);
+    border-radius: 1px;
+  }
+
+  /* SAAS OPPORTUNITIES */
+  .saas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .saas-card {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .saas-card:hover { border-color: rgba(201,168,76,0.4); }
+  .saas-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .saas-card.tier1::before { background: var(--gold); }
+  .saas-card.tier2::before { background: var(--accent); }
+  .saas-card.tier3::before { background: var(--green); }
+  .saas-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+  .tier1 .saas-tier { color: var(--gold); }
+  .tier2 .saas-tier { color: var(--accent); }
+  .tier3 .saas-tier { color: var(--green); }
+  .saas-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+  }
+  .saas-desc {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .saas-meta {
+    display: flex; gap: 1rem; flex-wrap: wrap;
+  }
+  .saas-meta span {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  /* PRINT */
+  @media print {
+    nav { display: none; }
+    section { page-break-inside: avoid; }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; height: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-brand">AC · Wealth Management</div>
+  <div class="nav-links">
+    <a href="#roadmap">Roadmap</a>
+    <a href="#funnel">Estrategia</a>
+    <a href="#contenido">Contenido</a>
+    <a href="#financiero">Modelo</a>
+    <a href="#tech">Tech</a>
+    <a href="#saas">Oportunidades</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Business Plan · 2026–2031</div>
+  <h1>Independent Wealth<br>Management <em>& Advisory</em></h1>
+  <p class="hero-sub">Armando Cabral Jorge — Estrategia para construir una firma de gestión patrimonial independiente, escalable, y location-free desde República Dominicana.</p>
+  <div class="hero-metrics">
+    <div class="metric">
+      <div class="metric-value">$100MM</div>
+      <div class="metric-label">AUM objetivo · año 5</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">$1MM+</div>
+      <div class="metric-label">Revenue anual · año 5</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">3</div>
+      <div class="metric-label">Flujos de ingreso</div>
+    </div>
+    <div class="metric">
+      <div class="metric-value">100%</div>
+      <div class="metric-label">Location independent</div>
+    </div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<section id="roadmap">
+  <div class="section-label">01 — Roadmap</div>
+  <h2>Las 4 fases del negocio</h2>
+  <div class="phases">
+
+    <div class="phase open" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-num">01</div>
+        <div class="phase-info">
+          <div class="phase-title">Credenciales + Marca Personal</div>
+          <div class="phase-period">Meses 1–12 · 2026</div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-items">
+          <div class="phase-item">Completar FPWMP (CFI) — base técnica y regulatoria para advisory</div>
+          <div class="phase-item">Iniciar construcción de marca en LinkedIn: 3 posts/semana sobre finanzas, inversión, ETFs, mercados para latinos</div>
+          <div class="phase-item">Abrir Advisor Account en IBKR Pro — familiarizarse con la plataforma de gestión de cuentas de clientes</div>
+          <div class="phase-item">Definir nicho inicial: profesionales y empresarios dominicanos en RD y diáspora (NY, Miami, Madrid)</div>
+          <div class="phase-item">Crear propuesta de valor clara: "Gestión patrimonial global desde RD, sin comisiones ocultas, con estrategia institucional"</div>
+          <div class="phase-item">Abrir estructura legal básica: SRL en RD + evaluar LLC en Wyoming (bajo costo, máxima flexibilidad)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-num">02</div>
+        <div class="phase-info">
+          <div class="phase-title">Primeros Clientes + AUM Base</div>
+          <div class="phase-period">Meses 6–24 · 2026–2027</div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-items">
+          <div class="phase-item">Captar primeros 10–15 clientes vía red cercana: familia, amigos empresarios, colegas del brokerage</div>
+          <div class="phase-item">Ticket mínimo inicial: $25,000 USD por cuenta — foco en clientes con capacidad real</div>
+          <div class="phase-item">Estrategia de inversión: portfolios ETF diversificados por perfil de riesgo (conservador / moderado / agresivo)</div>
+          <div class="phase-item">Completar CMSA — refuerza credibilidad en capital markets para clientes más sofisticados</div>
+          <div class="phase-item">Lanzar newsletter mensual para clientes actuales y prospectos — commentary de mercados + educación financiera</div>
+          <div class="phase-item">Meta AUM final fase: $2–5MM → Revenue fee: $20K–$50K/año</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-num">03</div>
+        <div class="phase-info">
+          <div class="phase-title">Escala + Diáspora + Producto</div>
+          <div class="phase-period">Meses 18–48 · 2027–2029</div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-items">
+          <div class="phase-item">Expandir a diáspora dominicana — NY, Miami, Madrid: mercado masivo y desatendido con alta capacidad de ahorro</div>
+          <div class="phase-item">Registrar RIA en EE.UU. (Wyoming o Florida) para acceder formalmente a clientes americanos y dominicoamericanos</div>
+          <div class="phase-item">Lanzar primera herramienta propia: dashboard de portfolio para clientes + calculadora de metas financieras</div>
+          <div class="phase-item">Incorporar advisory de planeación financiera personal: retiro, educación universitaria hijos, protección patrimonial</div>
+          <div class="phase-item">Explorar partnerships con contadores, abogados, y asesores de negocios en RD como canal de referidos</div>
+          <div class="phase-item">Meta AUM final fase: $20–35MM → Revenue fee: $200K–$350K/año</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase" onclick="togglePhase(this)">
+      <div class="phase-header">
+        <div class="phase-num">04</div>
+        <div class="phase-info">
+          <div class="phase-title">Firma + SaaS + $100MM AUM</div>
+          <div class="phase-period">Años 4–6 · 2029–2031</div>
+        </div>
+        <div class="phase-toggle">+</div>
+      </div>
+      <div class="phase-body">
+        <div class="phase-items">
+          <div class="phase-item">Formalizar como firma: contratar 1–2 asesores asociados para delegar gestión operativa de cuentas</div>
+          <div class="phase-item">Lanzar herramienta SaaS propia para advisors en LATAM: plataforma de gestión de portfolios + CRM de clientes</div>
+          <div class="phase-item">Revenue mix objetivo: 60% AUM fees + 25% SaaS/herramientas + 15% advisory premium / planeación</div>
+          <div class="phase-item">Explorar family office services para clientes HNW ($1MM+): estrategias más complejas, real assets, private credit</div>
+          <div class="phase-item">Meta AUM final fase: $75–100MM → Revenue total: $800K–$1.2MM/año</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FUNNEL -->
+<section id="funnel">
+  <div class="section-label">02 — Estrategia Comercial</div>
+  <h2>De prospecto a cliente fiel</h2>
+  <div class="funnel">
+
+    <div class="funnel-step">
+      <div class="funnel-stage stage-attract">Atracción</div>
+      <div>
+        <div class="funnel-title">Visibilidad & Autoridad</div>
+      </div>
+      <div class="funnel-tactics">LinkedIn 3x/semana · Newsletter mensual · Podcast/videos cortos sobre inversión para latinos · SEO en YouTube con temas de ETFs y retiro</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-stage stage-convert">Conversión</div>
+      <div>
+        <div class="funnel-title">Primera Conversación</div>
+      </div>
+      <div class="funnel-tactics">Lead magnet: "Guía de inversión para dominicanos" · Calendly para consulta gratuita 30 min · Propuesta personalizada con proyección de portfolio</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-stage stage-onboard">Onboarding</div>
+      <div>
+        <div class="funnel-title">Activación del Cliente</div>
+      </div>
+      <div class="funnel-tactics">Apertura IBKR en 48–72h · IPS (Investment Policy Statement) personalizado · Llamada de bienvenida + explicación de estrategia y fees · Dashboard acceso inmediato</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-stage stage-retain">Retención</div>
+      <div>
+        <div class="funnel-title">Experiencia Continua</div>
+      </div>
+      <div class="funnel-tactics">Reporte mensual de performance · Llamada trimestral de revisión · Newsletter exclusivo para clientes · Alertas de mercado relevantes · Rebalanceo automático con explicación</div>
+    </div>
+
+    <div class="funnel-step">
+      <div class="funnel-stage stage-scale">Expansión</div>
+      <div>
+        <div class="funnel-title">Referidos & Upsell</div>
+      </div>
+      <div class="funnel-tactics">Programa de referidos: 3 meses de fee gratis por cliente nuevo · Upsell a planeación financiera completa · Invitación a clientes clave a eventos privados / webinars</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTENIDO -->
+<section id="contenido">
+  <div class="section-label">03 — Plan de Contenido</div>
+  <h2>Construyendo autoridad pública</h2>
+  <div class="content-grid">
+
+    <div class="content-card">
+      <div class="content-type">LinkedIn · Core</div>
+      <div class="content-title">Educación Financiera para Latinos</div>
+      <div class="content-desc">Posts sobre ETFs, diversificación, retiro, errores comunes de inversión. Tono: accesible pero sofisticado. Tu perfil de ingeniero + MBA + practitioner te diferencia de coaches sin fondo.</div>
+      <span class="content-freq">3× semana</span>
+    </div>
+
+    <div class="content-card">
+      <div class="content-type">Newsletter · Email</div>
+      <div class="content-title">El Portafolio — Commentary mensual</div>
+      <div class="content-desc">Análisis de mercados, qué está pasando con las tasas, oportunidades en ETFs, 1 concepto financiero profundo por edición. Substack o Beehiiv. Meta: 2,000 suscriptores año 1.</div>
+      <span class="content-freq">1× mes</span>
+    </div>
+
+    <div class="content-card">
+      <div class="content-type">YouTube / Reels</div>
+      <div class="content-title">¿Cómo invierto desde RD?</div>
+      <div class="content-desc">Videos cortos respondiendo las preguntas más comunes: ¿cómo abro IBKR?, ¿qué ETF compro primero?, ¿cuánto necesito para empezar? SEO masivo en búsquedas de latinos.</div>
+      <span class="content-freq">2× mes</span>
+    </div>
+
+    <div class="content-card">
+      <div class="content-type">Lead Magnet · PDF</div>
+      <div class="content-title">Guía: Invierte desde el Caribe</div>
+      <div class="content-desc">PDF descargable que explica cómo abrir cuenta en IBKR, impuestos, tipos de cuentas, y portfolio modelo para principiantes. Captura email y pre-cualifica prospectos serios.</div>
+      <span class="content-freq">Evergreen</span>
+    </div>
+
+    <div class="content-card">
+      <div class="content-type">Webinar · Trimestral</div>
+      <div class="content-title">Outlook de Mercados para la Diáspora</div>
+      <div class="content-desc">Evento virtual trimestral: perspectivas de mercado, preguntas en vivo, presentación de tu track record de portfolios. Excelente para convertir prospectos calientes.</div>
+      <span class="content-freq">4× año</span>
+    </div>
+
+    <div class="content-card">
+      <div class="content-type">Podcast · Opcional fase 2</div>
+      <div class="content-title">Patrimonio Latino</div>
+      <div class="content-desc">Entrevistas a empresarios dominicanos exitosos, expertos en fintech, advisors en EE.UU. Construye red y audiencia simultáneamente. Bajo costo de producción.</div>
+      <span class="content-freq">2× mes</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- MODELO FINANCIERO -->
+<section id="financiero">
+  <div class="section-label">04 — Modelo Financiero</div>
+  <h2>Proyección 5 años</h2>
+
+  <div class="fin-model">
+    <table>
+      <thead>
+        <tr>
+          <th>Indicador</th>
+          <th>Año 1 · 2026</th>
+          <th>Año 2 · 2027</th>
+          <th>Año 3 · 2028</th>
+          <th>Año 4 · 2029</th>
+          <th>Año 5 · 2030</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Nº de clientes activos</td>
+          <td>5–8</td>
+          <td>15–20</td>
+          <td>35–50</td>
+          <td>70–90</td>
+          <td>120–150</td>
+        </tr>
+        <tr>
+          <td>AUM promedio por cliente (USD)</td>
+          <td>$40,000</td>
+          <td>$60,000</td>
+          <td>$80,000</td>
+          <td>$100,000</td>
+          <td>$120,000</td>
+        </tr>
+        <tr class="separator">
+          <td>AUM Total (USD)</td>
+          <td class="highlight">$300K</td>
+          <td class="highlight">$1.2MM</td>
+          <td class="highlight">$4MM</td>
+          <td class="highlight">$9MM</td>
+          <td class="highlight">$18MM</td>
+        </tr>
+        <tr>
+          <td>Fee AUM (1% anual)</td>
+          <td class="green">$3,000</td>
+          <td class="green">$12,000</td>
+          <td class="green">$40,000</td>
+          <td class="green">$90,000</td>
+          <td class="green">$180,000</td>
+        </tr>
+        <tr>
+          <td>Advisory / Planning fees</td>
+          <td class="green">$5,000</td>
+          <td class="green">$15,000</td>
+          <td class="green">$30,000</td>
+          <td class="green">$50,000</td>
+          <td class="green">$80,000</td>
+        </tr>
+        <tr>
+          <td>Herramientas / SaaS / Cursos</td>
+          <td class="green">—</td>
+          <td class="green">$3,000</td>
+          <td class="green">$15,000</td>
+          <td class="green">$40,000</td>
+          <td class="green">$90,000</td>
+        </tr>
+        <tr class="separator">
+          <td><strong>Revenue Total (USD)</strong></td>
+          <td class="highlight">$8,000</td>
+          <td class="highlight">$30,000</td>
+          <td class="highlight">$85,000</td>
+          <td class="highlight">$180,000</td>
+          <td class="highlight">$350,000</td>
+        </tr>
+        <tr>
+          <td>Costos operativos (tech + legal + mkt)</td>
+          <td>$4,000</td>
+          <td>$8,000</td>
+          <td>$18,000</td>
+          <td>$35,000</td>
+          <td>$60,000</td>
+        </tr>
+        <tr class="separator">
+          <td><strong>Ingreso neto estimado</strong></td>
+          <td class="green">~$4,000</td>
+          <td class="green">~$22,000</td>
+          <td class="green">~$67,000</td>
+          <td class="green">~$145,000</td>
+          <td class="green">~$290,000</td>
+        </tr>
+        <tr>
+          <td>Fase</td>
+          <td>Fundación</td>
+          <td>Tracción</td>
+          <td>Crecimiento</td>
+          <td>Expansión</td>
+          <td>Consolidación</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">Revenue Total proyectado (USD) — Años 1 al 5</div>
+    <div class="bar-chart" id="barChart"></div>
+  </div>
+
+  <p style="font-size:0.78rem; color:var(--text-dim); margin-top:1rem; font-style:italic;">
+    * Proyección conservadora. Con clientes HNW ($250K+ por cuenta) y escala a diáspora, AUM podría alcanzar $50–100MM en año 5–6 con revenue de $500K–$1MM+. El modelo SaaS añadiría un flujo de ingreso separado y más escalable.
+  </p>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech">
+  <div class="section-label">05 — Stack Tecnológico</div>
+  <h2>Las herramientas del negocio</h2>
+  <div class="tech-grid">
+
+    <div class="tech-card">
+      <div class="tech-category">Core · Brokerage</div>
+      <div class="tech-name">Interactive Brokers Pro</div>
+      <div class="tech-desc">Plataforma central. Advisor Account permite gestionar múltiples cuentas de clientes, rebalanceo automático, reportes de performance, y fee billing automatizado.</div>
+      <div class="tech-tools">
+        <span class="tool-tag">IBKR Advisor</span>
+        <span class="tool-tag">TWS API</span>
+        <span class="tool-tag">PortfolioAnalyst</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">CRM · Clientes</div>
+      <div class="tech-name">HubSpot o Notion CRM</div>
+      <div class="tech-desc">Gestión del pipeline de prospectos, seguimiento de conversaciones, onboarding, y ciclo de vida del cliente. HubSpot (free tier potente) o Notion si prefieres flexibilidad total.</div>
+      <div class="tech-tools">
+        <span class="tool-tag">HubSpot Free</span>
+        <span class="tool-tag">Notion</span>
+        <span class="tool-tag">Calendly</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Comunicación · Clientes</div>
+      <div class="tech-name">Email + Video Reporting</div>
+      <div class="tech-desc">Newsletter con Beehiiv. Reportes mensuales con Loom (video personalizado) o PDF automatizado. Reuniones por Zoom. WhatsApp Business para comunicación directa con clientes RD.</div>
+      <div class="tech-tools">
+        <span class="tool-tag">Beehiiv</span>
+        <span class="tool-tag">Loom</span>
+        <span class="tool-tag">Zoom</span>
+        <span class="tool-tag">WhatsApp Biz</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Análisis · Portfolios</div>
+      <div class="tech-name">Modelos + Dashboards</div>
+      <div class="tech-desc">Excel/Google Sheets con tus modelos financieros propios. Portfolio Visualizer para backtesting ETFs. Morningstar para research. Más adelante: Tableau o Power BI para dashboards de clientes.</div>
+      <div class="tech-tools">
+        <span class="tool-tag">Portfolio Visualizer</span>
+        <span class="tool-tag">Morningstar</span>
+        <span class="tool-tag">Google Sheets</span>
+        <span class="tool-tag">Power BI</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Contenido · Marketing</div>
+      <div class="tech-name">Creación & Distribución</div>
+      <div class="tech-desc">LinkedIn como canal principal. Canva Pro para diseño de posts y PDFs. Buffer para programar contenido. Typeform para captura de leads y onboarding inicial de prospectos.</div>
+      <div class="tech-tools">
+        <span class="tool-tag">LinkedIn</span>
+        <span class="tool-tag">Canva Pro</span>
+        <span class="tool-tag">Buffer</span>
+        <span class="tool-tag">Typeform</span>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-category">Legal · Compliance</div>
+      <div class="tech-name">Estructura & Documentación</div>
+      <div class="tech-desc">DocuSign para firmas digitales de contratos y IPS. Stripe para cobro de advisory fees. Para estructura legal: SRL en RD + LLC Wyoming. Asesor legal local para compliance RD.</div>
+      <div class="tech-tools">
+        <span class="tool-tag">DocuSign</span>
+        <span class="tool-tag">Stripe</span>
+        <span class="tool-tag">Notion Docs</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SAAS OPPORTUNITIES -->
+<section id="saas">
+  <div class="section-label">06 — Oportunidades de Producto</div>
+  <h2>Herramientas propias & SaaS potencial</h2>
+  <div class="saas-grid">
+
+    <div class="saas-card tier1">
+      <div class="saas-tier">Prioridad Alta · Año 1–2</div>
+      <div class="saas-title">Client Portfolio Dashboard</div>
+      <div class="saas-desc">Portal web para tus propios clientes: ven su portfolio en tiempo real, performance, allocación, metas de retiro. Lo construyes para ti y con el tiempo lo conviertes en producto para otros advisors LATAM.</div>
+      <div class="saas-meta">
+        <span>React + IBKR API</span>
+        <span>Uso interno primero</span>
+        <span>SaaS potencial: $99–299/mes por advisor</span>
+      </div>
+    </div>
+
+    <div class="saas-card tier1">
+      <div class="saas-tier">Prioridad Alta · Año 1</div>
+      <div class="saas-title">Calculadora de Metas Financieras</div>
+      <div class="saas-desc">Tool interactiva para prospectos: "¿Cuánto necesito invertir para retirarme con $X/mes en Y años?" Lead magnet poderoso que pre-califica clientes y demuestra expertise. Construible en días.</div>
+      <div class="saas-meta">
+        <span>React / No-code</span>
+        <span>Lead gen</span>
+        <span>Embeddable en web</span>
+      </div>
+    </div>
+
+    <div class="saas-card tier2">
+      <div class="saas-tier">Prioridad Media · Año 2–3</div>
+      <div class="saas-title">Advisory CRM para LATAM Advisors</div>
+      <div class="saas-desc">CRM especializado para advisors financieros independientes en LATAM — gap enorme en el mercado. Gestión de clientes, IPS digital, reportes de performance, billing. Tu experiencia operativa es la ventaja.</div>
+      <div class="saas-meta">
+        <span>SaaS B2B</span>
+        <span>$199–499/mes</span>
+        <span>Mercado: 5,000+ advisors LATAM</span>
+      </div>
+    </div>
+
+    <div class="saas-card tier2">
+      <div class="saas-tier">Prioridad Media · Año 2–3</div>
+      <div class="saas-title">ETF Screener para Mercados Emergentes</div>
+      <div class="saas-desc">Herramienta de análisis y comparación de ETFs con enfoque en LATAM y emerging markets. Filtros por exposición geográfica, TER, dividendos, volatilidad. Monetizable via suscripción o freemium.</div>
+      <div class="saas-meta">
+        <span>Data API + React</span>
+        <span>$19–49/mes</span>
+        <span>B2C + B2B</span>
+      </div>
+    </div>
+
+    <div class="saas-card tier3">
+      <div class="saas-tier">Largo Plazo · Año 3–5</div>
+      <div class="saas-title">Plataforma de Inversión para Diáspora</div>
+      <div class="saas-desc">Plataforma tipo "robo-advisor lite" para la diáspora dominicana y caribeña: onboarding simple, portfolios modelo, educación integrada, conexión con IBKR. El mayor upside de todos — mercado masivo y desatendido.</div>
+      <div class="saas-meta">
+        <span>Fintech / PaaS</span>
+        <span>Fee sobre AUM</span>
+        <span>Requiere regulación + capital</span>
+      </div>
+    </div>
+
+    <div class="saas-card tier3">
+      <div class="saas-tier">Largo Plazo · Año 4–6</div>
+      <div class="saas-title">Financial Planning API para Fintechs</div>
+      <div class="saas-desc">API que otras fintechs en LATAM pueden consumir para ofrecer proyecciones de retiro, análisis de riesgo, y recomendaciones de portfolios a sus usuarios. Modelo PaaS puro. Alto valor, bajo volumen de clientes.</div>
+      <div class="saas-meta">
+        <span>PaaS / API</span>
+        <span>Revenue share o $2K–10K/mes</span>
+        <span>Requiere partnerships</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top:3rem; padding:2rem; background:var(--dark2); border:1px solid rgba(201,168,76,0.2); border-left: 3px solid var(--gold);">
+    <div class="section-label" style="margin-bottom:0.75rem;">Nota estratégica</div>
+    <p style="font-size:0.9rem; color:var(--text-dim); line-height:1.7;">
+      Las primeras dos herramientas (Dashboard + Calculadora) las construyes <em style="color:var(--text)">para ti mismo</em> mientras operas el negocio de advisory. El costo es mínimo — un desarrollador freelance o incluso tú mismo con Claude como co-piloto. Una vez validadas con tus propios clientes, abrirlas como producto para otros advisors en LATAM es un movimiento natural y de bajo fricción. <strong style="color:var(--gold)">Tu ventaja competitiva es que eres practitioner primero, product builder segundo.</strong>
+    </p>
+  </div>
+</section>
+
+<div style="padding:3rem 4rem; border-top:1px solid rgba(201,168,76,0.2); display:flex; justify-content:space-between; align-items:center; flex-wrap:gap-1rem;">
+  <div>
+    <div style="font-family:'Playfair Display',serif; font-size:1.1rem; margin-bottom:0.3rem;">Armando Cabral Jorge</div>
+    <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--text-dim); letter-spacing:0.1em;">WEALTH MANAGEMENT · BUSINESS PLAN · 2026</div>
+  </div>
+  <div style="font-family:'DM Mono',monospace; font-size:0.65rem; color:var(--text-dim);">armando.cabral.jorge@gmail.com</div>
+</div>
+
+<script>
+  function togglePhase(el) {
+    el.classList.toggle('open');
+  }
+
+  // Bar chart
+  const data = [
+    { year: 'Año 1', value: 8000, label: '$8K' },
+    { year: 'Año 2', value: 30000, label: '$30K' },
+    { year: 'Año 3', value: 85000, label: '$85K' },
+    { year: 'Año 4', value: 180000, label: '$180K' },
+    { year: 'Año 5', value: 350000, label: '$350K' },
+  ];
+  const max = Math.max(...data.map(d => d.value));
+  const chartHeight = 160;
+  const chart = document.getElementById('barChart');
+  data.forEach(d => {
+    const h = Math.max(4, (d.value / max) * chartHeight);
+    chart.innerHTML += `
+      <div class="bar-group">
+        <div class="bar" style="height:${h}px">
+          <div class="bar-value">${d.label}</div>
+        </div>
+        <div class="bar-label">${d.year}</div>
+      </div>
+    `;
+  });
+
+  // Animate phases on load
+  document.querySelectorAll('.phase, .funnel-step, .content-card, .tech-card, .saas-card').forEach((el, i) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(16px)';
+    el.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.phase, .funnel-step, .content-card, .tech-card, .saas-card').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
